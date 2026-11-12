@@ -1,0 +1,19 @@
+[plugin]
+id = "dev.haunt.peek"
+name = "Peek"
+description = "Hold ⌥ over a Haunt row to peek at that agent's terminal"
+version = "0.1.0"
+api = "0.5"
+entry = "target/wasm32-wasip2/release/haunt_plugin.wasm"
+license = "MIT"
+
+[capabilities]
+# Only each agent's name, for the card's title; no event text is kept.
+events = ["agent.session-start", "agent.prompt", "agent.subagent", "agent.tool", "agent.permission-request", "agent.question", "agent.stop", "agent.unknown"]
+keys = true
+panel = true
+terminal_read = true
+
+[settings]
+lines = { type = "integer", default = 8, description = "Lines of the terminal in the card, 1 to 50" }
+unverified = { type = "bool", default = false, description = "Also follow events without the tab's nonce, which anything in the terminal can forge" }
